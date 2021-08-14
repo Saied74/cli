@@ -8,8 +8,10 @@ import (
 	"strings"
 )
 
+//ItemValidator is supplied by the user to validate user renterires.
 type ItemValidator func(string) bool
 
+//Item holds the values to be displayed for each line item.
 type Item struct {
 	Name      string
 	Prompt    string
@@ -18,11 +20,13 @@ type Item struct {
 	Validator ItemValidator
 }
 
+//ItemResponse is sent back to the user though the channel.
 type ItemResponse struct {
 	Name  string
 	Value string
 }
 
+//Items is the table of all the data to be displayed
 type Items struct {
 	OrderList   []string
 	ItemList    map[string]*Item
@@ -30,6 +34,7 @@ type Items struct {
 	sender      chan ItemResponse
 }
 
+//Command is called to start the CLI
 func Command(t *Items) chan ItemResponse {
 	t.sender = make(chan ItemResponse)
 	go t.run()
