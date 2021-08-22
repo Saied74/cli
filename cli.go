@@ -46,7 +46,7 @@ func (t *Items) run() {
 
 	for {
 		for i, item := range t.OrderList {
-			fmt.Printf("%d.\t%s, %s\n", i+1, t.ItemList[item].Prompt, t.ItemList[item].Value)
+			fmt.Printf("%d.\t%s %s\n", i+1, t.ItemList[item].Prompt, t.ItemList[item].Value)
 		}
 		for _, action := range t.ActionLines {
 			fmt.Println(action)
