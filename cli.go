@@ -74,25 +74,25 @@ func (t *Items) run() {
 				fmt.Println("You did not enter a number, you entered: ", input)
 				continue
 			}
-			if n > len(t.OrderList) {
+			if n <= len(t.OrderList) {
+				n--
+				itemName := t.OrderList[n]
+				fmt.Println(t.ItemList[itemName].Prompt)
+				input, _ = reader.ReadString('\n')
+				input = strings.TrimSuffix(input, "\n")
+				if !t.ItemList[itemName].Validator(input) {
+					fmt.Println("You did not enter a valid value, you entered: ", input)
+					continue
+				}
+				t.ItemList[itemName].Value = input
+				r := ItemResponse{
+					Name:  itemName,
+					Value: input,
+				}
+				t.sender <- r
+			} else {
 				fmt.Printf("Item number %d is too large, try again\n", n)
-				continue
 			}
-			n--
-			itemName := t.OrderList[n]
-			fmt.Println(t.ItemList[itemName].Prompt)
-			input, _ = reader.ReadString('\n')
-			input = strings.TrimSuffix(input, "\n")
-			if !t.ItemList[itemName].Validator(input) {
-				fmt.Println("You did not enter a valid value, you entered: ", input)
-				continue
-			}
-			t.ItemList[itemName].Value = input
-			r := ItemResponse{
-				Name:  itemName,
-				Value: input,
-			}
-			t.sender <- r
 		}
 	}
 }
