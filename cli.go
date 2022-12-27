@@ -76,6 +76,7 @@ func (t *Items) run() {
 			}
 			if n > len(t.OrderList) {
 				fmt.Printf("Item number %d is too large, try again\n", n)
+				continue
 			}
 			n--
 			itemName := t.OrderList[n]
