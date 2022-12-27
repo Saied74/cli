@@ -92,6 +92,7 @@ func (t *Items) run() {
 				t.sender <- r
 			} else {
 				fmt.Printf("Item number %d is too large, try again\n", n)
+				continue
 			}
 		}
 	}
