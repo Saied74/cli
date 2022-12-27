@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-//ItemValidator is supplied by the user to validate user renterires.
+//ItemValidator is supplied by the user to validate user enterires.
 type ItemValidator func(string) bool
 
 //Item holds the values to be displayed for each line item.
@@ -73,6 +73,9 @@ func (t *Items) run() {
 			if err != nil {
 				fmt.Println("You did not enter a number, you entered: ", input)
 				continue
+			}
+			if n > len(t.OrderList) {
+				fmt.Printf("Item number %d is too large, try again\n", n)
 			}
 			n--
 			itemName := t.OrderList[n]

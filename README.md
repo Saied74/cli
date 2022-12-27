@@ -2,14 +2,15 @@
 Command Line Interface (CLI) package
 
 When testing ideas and concepts, it is useful to have an easy to use Command
-line interface.  This is my attempt to create a simple one.
+Line Interface (CLI).  This is my attempt to create a simple one.
 
 To use it, you need to build a table of Items (see the data structure Items).
 The fields are:
 
-OrderList:  This is a slice of strings which in order list the names of the
-items to be printed in numerical order and displayed to the user.  The names
-are for internal use and are not displayed.  Make them meaningful for you.
+OrderList:  This is a slice of strings which is the ordered list of the internal
+names of the items to be displayed to the user.  The names are for internal
+use and are not displayed.  They are indices into the ItemList table.  
+Make them meaningful for you.
 
 ItemList: Is a map of the Items to be displayed on the screen.  The fields for
 the structure "Item" are listed below.  The index into the map is the names
@@ -48,4 +49,4 @@ There are two special names provided by the cli package.  One of them is continu
 and the other is Quit.  They are sent when the user enters c or q.  How they are
 used is a function of the using application.  The intent here is to signify
 the users instruction is to run the function as defined by the cli values
-entered or quit the program, but of course, they can be used in other ways. 
+entered or quit the program, but of course, they can be used in other ways.
